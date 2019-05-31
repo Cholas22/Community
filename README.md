@@ -10,6 +10,8 @@
 github --> deploy key
 <br>
 [Github Oauth文档](https://developer.github.com/apps/building-oauth-apps/)
+<br>
+[Spring](https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
 
 ## 工具
 [Git](https://git-scm.com/download)
@@ -17,3 +19,16 @@ github --> deploy key
 [OkHttp](https://square.github.io/okhttp/)
 <br>
 [Fastjson](https://mvnrepository.com/artifact/com.alibaba/fastjson/1.2.58)
+
+## 脚本
+```sql
+    create table USER
+    (
+    	ID INTEGER INT auto_increment primary key,
+    	ACCOUNT_ID VARCHAR(100),
+    	NAME VARCHAR(50),
+    	TOKEN VARCHAR(36),
+    	GMT_CREATE BIGINT,
+    	GMT_MODIFIED BIGINT
+    );
+```

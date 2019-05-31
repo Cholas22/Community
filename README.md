@@ -19,7 +19,8 @@ github --> deploy key
 [OkHttp](https://square.github.io/okhttp/)
 <br>
 [Fastjson](https://mvnrepository.com/artifact/com.alibaba/fastjson/1.2.58)
-
+<br>
+[Flyway](https://flywaydb.org/getstarted/firststeps/maven#creating-the-first-migration)
 ## 脚本
 ```sql
     create table USER
@@ -31,4 +32,7 @@ github --> deploy key
     	GMT_CREATE BIGINT,
     	GMT_MODIFIED BIGINT
     );
+```
+```bash
+    mvn flyway:migrate
 ```

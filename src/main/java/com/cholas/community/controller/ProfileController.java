@@ -18,7 +18,7 @@ public class ProfileController {
     private QuestionService questionService;
 
     @GetMapping("/profile/{action}")
-    String profile(@PathVariable(name = "action") String action,
+    public String profile(@PathVariable(name = "action") String action,
                    Model model,
                    HttpServletRequest request,
                    @RequestParam(name = "page", defaultValue = "1") Integer page,

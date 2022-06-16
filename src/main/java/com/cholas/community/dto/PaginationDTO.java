@@ -31,28 +31,12 @@ public class PaginationDTO {
         }
 
         //showPrevious;前一页
-        if (page == 1){
-            showPrevious = false;
-        }else{
-            showPrevious = true;
-        }
+        showPrevious = page != 1;
         //showNext;下一页
-        if (page == totalPage){
-            showNext = false;
-        }else{
-            showNext = true;
-        }
+        showNext = !page.equals(totalPage);
         //showFirst;第一页
-        if (pages.contains(1)) {
-            showFirst = false;
-        } else {
-            showFirst = true;
-        }
+        showFirst = !pages.contains(1);
         //showEnd;最后一页
-        if (pages.contains(totalPage)) {
-            showEnd = false;
-        } else {
-            showEnd = true;
-        }
+        showEnd = !pages.contains(totalPage);
     }
 }

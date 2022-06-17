@@ -11,6 +11,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author cholas
+ */
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
     @Autowired

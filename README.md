@@ -6,7 +6,7 @@
 [Spring web](https://spring.io/guides/gs/serving-web-content)<br>
 github --> deploy key<br>
 [Github Oauth文档](https://developer.github.com/apps/building-oauth-apps/)<br>
-[Spring](https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)<br>
+[Spring Boot文档](https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)<br>
 [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
 
 ## 工具

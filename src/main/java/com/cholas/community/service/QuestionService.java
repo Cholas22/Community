@@ -2,6 +2,8 @@ package com.cholas.community.service;
 
 import com.cholas.community.dto.PaginationDTO;
 import com.cholas.community.dto.QuestionDTO;
+import com.cholas.community.exception.CustomizeErrorCode;
+import com.cholas.community.exception.CustomizeException;
 import com.cholas.community.mapper.QuestionMapper;
 import com.cholas.community.mapper.UserMapper;
 import com.cholas.community.model.Question;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class QuestionService {
@@ -105,6 +108,9 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (Objects.isNull(question)) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         User user = userMapper.selectByPrimaryKey(question.getCreator());
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
@@ -127,7 +133,10 @@ public class QuestionService {
             updateQuestion.setDescription(question.getDescription());
             QuestionExample example = new QuestionExample();
             example.createCriteria().andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }

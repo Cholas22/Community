@@ -2,7 +2,6 @@ package com.cholas.community.controller;
 
 import com.cholas.community.dto.AccessTokenDTO;
 import com.cholas.community.dto.GithubUser;
-import com.cholas.community.mapper.UserMapper;
 import com.cholas.community.model.User;
 import com.cholas.community.provider.GithubProvider;
 import com.cholas.community.service.UserService;

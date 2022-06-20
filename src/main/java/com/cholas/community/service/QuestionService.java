@@ -4,6 +4,7 @@ import com.cholas.community.dto.PaginationDTO;
 import com.cholas.community.dto.QuestionDTO;
 import com.cholas.community.exception.CustomizeErrorCode;
 import com.cholas.community.exception.CustomizeException;
+import com.cholas.community.mapper.QuestionExtMapper;
 import com.cholas.community.mapper.QuestionMapper;
 import com.cholas.community.mapper.UserMapper;
 import com.cholas.community.model.Question;
@@ -23,6 +24,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -138,5 +142,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }

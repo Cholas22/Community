@@ -7,4 +7,6 @@ import com.cholas.community.model.Question;
  */
 public interface QuestionExtMapper {
     int incView(Question row);
+
+    int incCommentCount(Question question);
 }

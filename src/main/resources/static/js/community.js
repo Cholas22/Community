@@ -50,13 +50,46 @@ function comment2Target(targetId,type,content) {
  */
 function collapseComment(e) {
     var id = e.getAttribute("data-id");
-    var comment = $("#comment-"+id);
+    var subComments = $("#comment-"+id);
     e.classList.toggle("active");
     if(e.classList.contains("active")){
-        //获取二级评论
-        $.getJSON("/comment/"+id,function (data) {
-            console.log(data);
-        });
+        if(subComments.children().length === 1){
+            //获取二级评论
+            $.getJSON("/comment/"+id,function (data) {
+                $.each(data.data.reverse(),function (index,comment) {
+                    var mediaLeftElement = $("<div/>",{
+                        "class":"media-left"
+                    }).append($("<img/>",{
+                        "class":"media-object img-rounded",
+                        "src":comment.user.avatarUrl
+                    }));
+
+                    var mediaBodyElement = $("<div/>",{
+                        "class":"media-body"
+                    }).append($("<h5/>",{
+                        "class":"media-heading",
+                        "html":comment.user.name
+                    })).append($("<div/>",{
+                        "html":comment.content
+                    })).append($("<div/>",{
+                        "class":"menu"
+                    }).append($("<span/>",{
+                        "class":"pull-right",
+                        "html": moment(comment.gmtCreate).format("YYYY-MM-DD")
+                    })));
+
+                    var mediaElement = $("<div/>",{
+                        "class":"media"
+                    }).append(mediaLeftElement).append(mediaBodyElement);
+
+                    var commentElement = $("<div/>",{
+                        "class":"col-lg-12 col-md-12 col-sm-12 col-xs-12 comments"
+                    }).append(mediaElement);
+
+                    subComments.prepend(commentElement);
+                });
+            });
+        }
     }
-    comment.toggleClass("in");
+    subComments.toggleClass("in");
 }

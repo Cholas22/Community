@@ -4,10 +4,7 @@ import com.cholas.community.dto.CommentDTO;
 import com.cholas.community.enums.CommentTypeEnum;
 import com.cholas.community.exception.CustomizeErrorCode;
 import com.cholas.community.exception.CustomizeException;
-import com.cholas.community.mapper.CommentMapper;
-import com.cholas.community.mapper.QuestionExtMapper;
-import com.cholas.community.mapper.QuestionMapper;
-import com.cholas.community.mapper.UserMapper;
+import com.cholas.community.mapper.*;
 import com.cholas.community.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +32,9 @@ public class CommentService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CommentExtMapper commentExtMapper;
+
     @Transactional(rollbackFor = Exception.class)
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
@@ -51,6 +51,8 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+            dbComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(dbComment);
         } else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());

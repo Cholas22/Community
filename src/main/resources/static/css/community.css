@@ -68,6 +68,9 @@ body{
 .menu .icon:hover{
     color: #499ef3;
 }
+.menu .icon .comment-icon{
+    margin-left: -10px;
+}
 .menu .active{
     color: #499ef3;
 }
